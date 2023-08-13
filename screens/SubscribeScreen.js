@@ -1,6 +1,8 @@
 import * as React from "react";
-import { Alert, Image, Pressable, TextInput, View } from "react-native";
+import { Image, Pressable, TextInput, View, Text } from "react-native";
 import { validateEmail } from "../utils";
+import styles from "../styles/subscribe-screen.style";
+import reusableStyles from "../styles/welcome-screen.style";
 
 const SubscribeScreen = () => {
   // Add subscribe screen code here
@@ -8,17 +10,24 @@ const SubscribeScreen = () => {
 
   const handleSubscribe = () => {
     let isValidEmail = validateEmail(email);
-    if (isValidEmail) Alert("Thanks for subscribing, stay tuned!");
+    if (isValidEmail !== null) {
+      alert("Thanks for subscribing, stay tuned!");
+    } else {
+      alert("Invalid Email");
+    }
   };
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.mainContent}>
         <Image
-          width={200}
-          height={"auto"}
+          resizeMode="contain"
           source={require("../assets/little-lemon-logo-grey.png")}
+          style={{
+            width: 100,
+            height: 100,
+          }}
         />
-        <Text>
+        <Text style={styles.mainText}>
           Subscribe to our newsletter for our latest delicious recipes!
         </Text>
       </View>
@@ -28,10 +37,14 @@ const SubscribeScreen = () => {
           onChangeText={(value) => setEmail(value)}
           placeholder="Type your email"
           textContentType="emailAddress"
+          style={styles.InputForm}
         />
 
-        <Pressable onPress={() => handleSubscribe()}>
-          <Text>Subscribe</Text>
+        <Pressable
+          onPress={() => handleSubscribe()}
+          style={reusableStyles.mainBtn}
+        >
+          <Text style={reusableStyles.btnText}>Subscribe</Text>
         </Pressable>
       </View>
     </View>

@@ -1,23 +1,35 @@
 import * as React from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import styles from "../styles/welcome-screen.style";
 
 const WelcomeScreen = ({ navigation }) => {
   // Add welcome screen code here.
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.mainContent}>
         <Image
           source={require("../assets/little-lemon-logo.png")}
-          width={400}
-          height={"auto"}
+          style={{
+            height: 250,
+            width: 250,
+          }}
+          resizeMethod="resize"
+          resizeMode="contain"
         />
 
-        <Text>Little Lemon, your local Mediterranean Bistro</Text>
+        <Text style={styles.mainText} textBreakStrategy="highQuality">
+          Little Lemon, your local Mediterranean Bistro
+        </Text>
       </View>
 
-      <Pressable onPress={() => navigation.navigate("/subscribe")}>
-        <Text>Newsletter</Text>
-      </Pressable>
+      <View style={styles.footerContent}>
+        <Pressable
+          onPress={() => navigation.navigate("SubscribeScreen")}
+          style={styles.mainBtn}
+        >
+          <Text style={styles.btnText}>Newsletters</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
