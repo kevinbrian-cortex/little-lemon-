@@ -9,8 +9,21 @@ const RootNavigator = () => {
   return (
     <Stack.Navigator>
       {/* Set up stack navigation to move between welcome screen and subscribe screen here */}
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen name="SubscribeScreen" component={SubscribeScreen} />
+      <Stack.Screen
+        name="WelcomeScreen"
+        component={WelcomeScreen}
+        options={{
+          title: "Welcome",
+        }}
+      />
+      <Stack.Screen
+        options={{
+          title: "Subscribe",
+          headerBackButtonMenuEnabled: true,
+        }}
+        name="SubscribeScreen"
+        component={SubscribeScreen}
+      />
     </Stack.Navigator>
   );
 };
