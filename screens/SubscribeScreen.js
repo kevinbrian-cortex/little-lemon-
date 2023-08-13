@@ -1,11 +1,14 @@
 import * as React from "react";
 import { Alert, Image, Pressable, TextInput, View } from "react-native";
+import { validateEmail } from "../utils";
 
 const SubscribeScreen = () => {
   // Add subscribe screen code here
+  const [email, setEmail] = React.useState("");
 
   const handleSubscribe = () => {
-    Alert("Thanks for subscribing, stay tuned!");
+    let isValidEmail = validateEmail(email);
+    if (isValidEmail) Alert("Thanks for subscribing, stay tuned!");
   };
   return (
     <View>
@@ -22,6 +25,7 @@ const SubscribeScreen = () => {
 
       <View>
         <TextInput
+          onChangeText={(value) => setEmail(value)}
           placeholder="Type your email"
           textContentType="emailAddress"
         />
